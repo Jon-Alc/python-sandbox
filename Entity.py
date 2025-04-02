@@ -17,8 +17,6 @@ class Entity:
 
     def __init__(self, starting_position: tuple[int, int]=(0, 0)) -> None:
         """
-        Constructor for the Entity class.
-
         Parameters
         ----------
         starting_position: tuple[int, int]=(0, 0)
@@ -41,8 +39,6 @@ class Entity:
 
 
     def destroy(self) -> None:
-        """
-        Deletes the Entity.
-        """
+        """Deletes the Entity."""
         print(f"Destroying {self}!")
         del self

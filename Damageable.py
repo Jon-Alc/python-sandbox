@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 
 
-class IDamageable(ABC):
+class Damageable(ABC):
     """
-    IDamageable is an abstract class/interface meant to be used with Entity.
-    Implementing IDamageable means the Entity can take damage.
+    Damageable is an abstract class meant to be used with Entity.
+    Implementing Damageable means the Entity can take damage.
 
     Attributes
     ----------
@@ -24,16 +24,15 @@ class IDamageable(ABC):
 
     def __init__(self, starting_health: int, max_health: int) -> None:
         """
-        Constructor for the IDamageable interface.
-
         Parameters
         ----------
         starting_health: int
-            The Entity's health to start with.
+            The Entity's health to start with. If the starting health is greater than the
+            max health, it will be capped.
         max_health: int
             The maximum amount of health the Entity can have at once.
         """
-        self.current_health : int = starting_health
+        self.current_health : int = min(starting_health, max_health)
         self.max_health : int = max_health
     
 
@@ -51,9 +50,9 @@ class IDamageable(ABC):
 
 
     @abstractmethod
-    def on_health_depleted(self):
+    def on_health_depleted(self) -> None:
         """
-        Should be called when this Entity's health goes to 0 or lower.To be implemented by
+        Should be called when this Entity's health goes to 0 or lower. To be implemented by
         the subclass.
         """
         pass

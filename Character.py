@@ -1,8 +1,8 @@
 from Entity import Entity
-from IDamageable import IDamageable
+from Damageable import Damageable
 
 
-class Character(Entity, IDamageable):
+class Character(Entity, Damageable):
     """
     Character is an Entity that can take damage.
 
@@ -35,19 +35,18 @@ class Character(Entity, IDamageable):
                 starting_health: int,
                 max_health: int) -> None:
         """
-        Constructor for the Character class.
-
         Parameters
         ----------
         starting_position: tuple[int, int]=(0, 0)
             The Character's starting location in the world, represented as (x, y).
         starting_health: int
-            The Character's health to start with.
+            The Character's health to start with. If the starting health is greater
+            than the max health, it will be capped.
         max_health: int
             The maximum amount of health the Character can have at once.
         """
         self.position : tuple[int, int] = starting_position
-        self.current_health : int = starting_health
+        self.current_health : int = min(starting_health, max_health)
         self.max_health : int = max_health
     
 
